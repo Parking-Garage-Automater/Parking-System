@@ -12,14 +12,15 @@ typedef struct {
     char* slot_name;    /* Parking slot name */
     int trig_pin;       /* GPIO pin connected to TRIG */
     int echo_pin;       /* GPIO pin connected to ECHO */
+    int led_pin;        /* GPIO pin connected to LED indicator */
     float distance;     /* Last measured distance*/
     bool is_occupied;   /* Current slot status */
     bool is_valid;      /* Whether last reading was valid */
 } parking_slot_t;
 
 const parking_slot_t parking_slots_config[] = {
-    {"Slot1", 5, 18, 0, false, false},       /* Slot 1: TRIG on GPIO 5, ECHO on GPIO 18 */
-    // {"Slot2", 19, 21, 0, false, false},   /* Slot 2: TRIG on GPIO 19, ECHO on GPIO 21 */
+    {"Slot1", 5, 18, 8, 0, false, false},   /* Slot 1: TRIG on GPIO 5, ECHO on GPIO 18, LED on GPIO 8 */
+    {"Slot2", 19, 21, 4, 0, false, false},  /* Slot 2: TRIG on GPIO 19, ECHO on GPIO 21, LED on GPIO 4 */
 };
 
 #define TOTAL_PARKING_SLOTS (sizeof(parking_slots_config) / sizeof(parking_slot_t))
@@ -38,6 +39,10 @@ void init_parking_slot(int slot_index) {
     
     gpio_reset_pin(parking_slots[slot_index].echo_pin);
     gpio_set_direction(parking_slots[slot_index].echo_pin, GPIO_MODE_INPUT);
+
+    gpio_reset_pin(parking_slots[slot_index].led_pin);
+    gpio_set_direction(parking_slots[slot_index].led_pin, GPIO_MODE_OUTPUT);
+    gpio_set_level(parking_slots[slot_index].led_pin, 0); /* Start with LED off */
 }
 
 /*  Function to measure distance for a single parking slot */
@@ -54,7 +59,7 @@ void measure_distance(int slot_index) {
     gpio_set_level(trig_pin, 0);
     
     uint32_t startTime = esp_timer_get_time();
-    uint32_t timeout = startTime + 30000; // 30ms timeout
+    uint32_t timeout = startTime + 30000;
     
     while (gpio_get_level(echo_pin) == 0 && esp_timer_get_time() < timeout) { 
         startTime = esp_timer_get_time(); 
@@ -67,6 +72,8 @@ void measure_distance(int slot_index) {
     
     uint32_t duration = endTime - startTime;
     parking_slots[slot_index].distance = (duration * 0.0343) / 2;
+
+    bool previous_state = parking_slots[slot_index].is_occupied;
     
     if (parking_slots[slot_index].distance > 400 || parking_slots[slot_index].distance < 2) {
         parking_slots[slot_index].is_valid = false;
@@ -75,13 +82,26 @@ void measure_distance(int slot_index) {
         parking_slots[slot_index].is_occupied = 
             (parking_slots[slot_index].distance < PARKING_THRESHOLD);
     }
+
+        /* Update the LED state based on parking slot occupancy */
+        if (parking_slots[slot_index].is_valid) {
+            gpio_set_level(parking_slots[slot_index].led_pin, 
+                parking_slots[slot_index].is_occupied ? 1 : 0);
+            
+            if (previous_state != parking_slots[slot_index].is_occupied) {
+                printf("[DEBUG] %s status changed: %s -> %s\n", 
+                    parking_slots[slot_index].slot_name,
+                    previous_state ? "OCCUPIED" : "AVAILABLE",
+                    parking_slots[slot_index].is_occupied ? "OCCUPIED" : "AVAILABLE");
+            }
+        }
 }
 
 /* Function to print the status of a single parking slot */
 void print_slot_status(int slot_index) {
     if (slot_index >= TOTAL_PARKING_SLOTS) return;
     
-    printf("Parking status for %s: ", parking_slots[slot_index].slot_name);
+    printf("Parking status for %s: \n", parking_slots[slot_index].slot_name);
     
     if (!parking_slots[slot_index].is_valid) {
         printf("ERROR! Invalid reading\n");
@@ -91,7 +111,7 @@ void print_slot_status(int slot_index) {
         } else {
             printf("AVAILABLE\n");
         }
-        printf("Distance: %.2f cm", parking_slots[slot_index].distance);
+        printf("[DEBUG] Distance: %.2f cm\n", parking_slots[slot_index].distance);
     }
 }
 
