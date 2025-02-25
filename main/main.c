@@ -23,8 +23,8 @@
 #define PARKING_ENDPOINT "/parking"
 
 /* TODO: WARNING - Better to read from a file */ 
-#define WIFI_SSID "ASK4 Wireless"
-#define WIFI_PASS "99ASK4@com"
+#define WIFI_SSID "PRKiPhone"
+#define WIFI_PASS "prka1705"
 #define WIFI_MAXIMUM_RETRY 5
 
 /* Define freeRTOS event group to signal when we are connected and ready to make a request */
@@ -108,12 +108,14 @@ void wifi_init_sta(void)
         .sta = {
             .ssid = WIFI_SSID,
             .password = WIFI_PASS,
-            .threshold.authmode = WIFI_AUTH_WPA2_PSK,
+            .threshold.authmode = WIFI_AUTH_WPA_WPA2_PSK
+            ,
         },
     };
     
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
     ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &wifi_config));
+    ESP_ERROR_CHECK(esp_wifi_set_protocol(WIFI_IF_STA, WIFI_PROTOCOL_11B | WIFI_PROTOCOL_11G | WIFI_PROTOCOL_11N));
     ESP_ERROR_CHECK(esp_wifi_start());
 
     ESP_LOGI(TAG, "wifi_init_sta finished.");
