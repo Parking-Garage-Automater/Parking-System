@@ -40,15 +40,16 @@ typedef struct {
     char* slot_name;    /* Parking slot name */
     int trig_pin;       /* GPIO pin connected to TRIG */
     int echo_pin;       /* GPIO pin connected to ECHO */
-    int led_pin;        /* GPIO pin connected to LED indicator */
+    int led_red_pin;    /* GPIO pin for RED */
+    int led_green_pin;  /* GPIO pin for GREEN */
     float distance;     /* Last measured distance */
     bool is_occupied;   /* Current slot status */
     bool is_valid;      /* Whether last reading was valid */
 } parking_slot_t;
 
 const parking_slot_t parking_slots_config[] = {
-    {"Slot1", 4, 5, 6, 0, false, false},   /* Slot 1: TRIG on GPIO 5, ECHO on GPIO 18, LED on GPIO 8 */
-    {"Slot2", 23, 22, 21, 0, false, false},  /* Slot 2: TRIG on GPIO 19, ECHO on GPIO 21, LED on GPIO 4 */
+    {"Slot1", 5, 18, 8, 9, 0, false, false},   /* Slot 1: TRIG on GPIO 5, ECHO on GPIO 18, LED on GPIO 8 */
+    // {"Slot2", 19, 21, 4, 0, false, false},  /* Slot 2: TRIG on GPIO 19, ECHO on GPIO 21, LED on GPIO 4 */
 };
 
 #define TOTAL_PARKING_SLOTS (sizeof(parking_slots_config) / sizeof(parking_slot_t))
@@ -220,6 +221,15 @@ bool send_parking_update(const char* spot_id, bool is_taken) {
     return success;
 }
 
+/* Helper function to set colors for the RGB LED */
+void set_led_color(int slot_index, bool red, bool green) {
+    if (slot_index >= TOTAL_PARKING_SLOTS) return;
+    
+    /* For common cathode, a HIGH turns on the LED */
+    gpio_set_level(parking_slots[slot_index].led_red_pin, red);
+    gpio_set_level(parking_slots[slot_index].led_green_pin, green);
+}
+
 /*  Function to initialise a single parking slot */
 void init_parking_slot(int slot_index) {
     if (slot_index >= TOTAL_PARKING_SLOTS) return;
@@ -232,9 +242,14 @@ void init_parking_slot(int slot_index) {
     gpio_reset_pin(parking_slots[slot_index].echo_pin);
     gpio_set_direction(parking_slots[slot_index].echo_pin, GPIO_MODE_INPUT);
 
-    gpio_reset_pin(parking_slots[slot_index].led_pin);
-    gpio_set_direction(parking_slots[slot_index].led_pin, GPIO_MODE_OUTPUT);
-    gpio_set_level(parking_slots[slot_index].led_pin, 0); /* Start with LED off */
+    gpio_reset_pin(parking_slots[slot_index].led_red_pin);
+    gpio_set_direction(parking_slots[slot_index].led_red_pin, GPIO_MODE_OUTPUT);
+    
+    gpio_reset_pin(parking_slots[slot_index].led_green_pin);
+    gpio_set_direction(parking_slots[slot_index].led_green_pin, GPIO_MODE_OUTPUT);
+    
+    /* Turn off all colors initially */
+    set_led_color(slot_index, false, false);
 }
 
 /*  Function to measure distance for a single parking slot */
@@ -277,8 +292,13 @@ void measure_distance(int slot_index) {
 
     /* Update the LED state based on parking slot occupancy */
     if (parking_slots[slot_index].is_valid) {
-        gpio_set_level(parking_slots[slot_index].led_pin, 
-            parking_slots[slot_index].is_occupied ? 1 : 0);
+        if (parking_slots[slot_index].is_occupied) {
+            /* Occupied - glow RED */
+            set_led_color(slot_index, true, false);
+        } else {
+            /* Available - glow GREEN */
+            set_led_color(slot_index, false, true);
+        }
 
         if (previous_state != parking_slots[slot_index].is_occupied) {
             ESP_LOGI(TAG, "%s status changed: %s -> %s", 
@@ -383,7 +403,7 @@ void app_main() {
 
     for (int i = 0; i < TOTAL_PARKING_SLOTS; i++) {
         measure_distance(i);
-        vTaskDelay(pdMS_TO_TICKS(100));
+        vTaskDelay(pdMS_TO_TICKS(500));
     }
 
     /* Send one-time initial status to server */
@@ -394,7 +414,7 @@ void app_main() {
             measure_distance(i);
             print_slot_status(i);
             /* Introduce small delay between sensors to avoid interference */
-            vTaskDelay(pdMS_TO_TICKS(100));
+            vTaskDelay(pdMS_TO_TICKS(500));
         }
 
         print_parking_summary();
