@@ -47,8 +47,8 @@ typedef struct {
 } parking_slot_t;
 
 const parking_slot_t parking_slots_config[] = {
-    {"Slot1", 5, 18, 8, 0, false, false},   /* Slot 1: TRIG on GPIO 5, ECHO on GPIO 18, LED on GPIO 8 */
-    // {"Slot2", 19, 21, 4, 0, false, false},  /* Slot 2: TRIG on GPIO 19, ECHO on GPIO 21, LED on GPIO 4 */
+    {"Slot1", 4, 5, 6, 0, false, false},   /* Slot 1: TRIG on GPIO 5, ECHO on GPIO 18, LED on GPIO 8 */
+    {"Slot2", 23 22, 21 , 0, false, false},  /* Slot 2: TRIG on GPIO 19, ECHO on GPIO 21, LED on GPIO 4 */
 };
 
 #define TOTAL_PARKING_SLOTS (sizeof(parking_slots_config) / sizeof(parking_slot_t))
@@ -315,6 +315,7 @@ void print_slot_status(int slot_index) {
         }
         ESP_LOGI(TAG, "Distance: %.2f cm", parking_slots[slot_index].distance);
     }
+    ESP_LOGI(TAG, "\n\n");
 }
 
 /* Function to count and print overall parking lot status */
@@ -333,12 +334,12 @@ void print_parking_summary() {
         }
     }
 
-    ESP_LOGI(TAG, "===== PARKING SUMMARY =====");
+    ESP_LOGI(TAG, "\n\n===== PARKING SUMMARY =====");
     ESP_LOGI(TAG, "Total slots: %d", (int)TOTAL_PARKING_SLOTS);
     ESP_LOGI(TAG, "Occupied: %d", occupied);
     ESP_LOGI(TAG, "Available: %d", available);
     ESP_LOGI(TAG, "Sensors with errors: %d", invalid);
-    ESP_LOGI(TAG, "===========================");
+    ESP_LOGI(TAG, "===========================\n\n");
 }
 
 /* Function to send initial status for all slots */
