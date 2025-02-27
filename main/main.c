@@ -48,7 +48,7 @@ typedef struct {
 
 const parking_slot_t parking_slots_config[] = {
     {"Slot1", 4, 5, 6, 0, false, false},   /* Slot 1: TRIG on GPIO 5, ECHO on GPIO 18, LED on GPIO 8 */
-    {"Slot2", 23 22, 21 , 0, false, false},  /* Slot 2: TRIG on GPIO 19, ECHO on GPIO 21, LED on GPIO 4 */
+    {"Slot2", 23, 22, 21, 0, false, false},  /* Slot 2: TRIG on GPIO 19, ECHO on GPIO 21, LED on GPIO 4 */
 };
 
 #define TOTAL_PARKING_SLOTS (sizeof(parking_slots_config) / sizeof(parking_slot_t))
