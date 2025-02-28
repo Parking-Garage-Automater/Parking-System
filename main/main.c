@@ -33,7 +33,7 @@ static EventGroupHandle_t wifi_event_group;
 #define WIFI_CONNECTED_BIT BIT0
 #define WIFI_FAIL_BIT      BIT1
 
-static const char *TAG = "PARKING_SPOT_TRACKER_APP";
+static const char *TAG = "PARKING_SYSTEM";
 static int s_retry_num = 0;
 
 typedef struct {
