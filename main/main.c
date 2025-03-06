@@ -1,22 +1,22 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
-#include "esp_timer.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/event_groups.h"
 #include "driver/gpio.h"
 #include "esp_log.h"
-#include "esp_http_client.h"
 #include "esp_system.h"
 #include "esp_wifi.h"
 #include "esp_netif.h"
 #include "esp_event.h"
+#include "esp_timer.h"
+#include "esp_http_client.h"
 #include "nvs_flash.h"
 #include "cJSON.h"
 
-#define PARKING_THRESHOLD 10.0   /* Distance threshold in cm for parking slot status */
-#define MAX_PARKING_SLOTS 1      /* Maximum number of parking slots supported */
+#define PARKING_THRESHOLD 10.0      /* Distance threshold in cm for parking slot status */
+#define MAX_PARKING_SLOTS 2         /* Maximum number of parking slots supported */
 #define UPDATE_INTERVAL_SEC 3000    /* Send parking updates every 3 seconds */
 
 #define SERVER_URL "http://152.53.124.121:3000"
@@ -49,7 +49,7 @@ typedef struct {
 
 const parking_slot_t parking_slots_config[] = {
     {"Slot1", 5, 18, 8, 9, 0, false, false},   /* Slot 1: TRIG on GPIO 5, ECHO on GPIO 18, LED on GPIO 8 */
-    // {"Slot2", 19, 21, 4, 0, false, false},  /* Slot 2: TRIG on GPIO 19, ECHO on GPIO 21, LED on GPIO 4 */
+    {"Slot2", 19, 21, 4, 6, 0, false, false},  /* Slot 2: TRIG on GPIO 19, ECHO on GPIO 21, LED on GPIO 4 */
 };
 
 #define TOTAL_PARKING_SLOTS (sizeof(parking_slots_config) / sizeof(parking_slot_t))
