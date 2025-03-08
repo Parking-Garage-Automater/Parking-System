@@ -57,6 +57,31 @@ const parking_slot_t parking_slots_config[] = {
 /* Global array to track current slot status */
 parking_slot_t parking_slots[MAX_PARKING_SLOTS];
 
+/* Function to print memory stats */
+void print_memory_stats(char *event) {
+    uint32_t free_heap = esp_get_free_heap_size();
+    uint32_t min_free_heap = esp_get_minimum_free_heap_size();
+    
+    multi_heap_info_t info;
+    heap_caps_get_info(&info, MALLOC_CAP_DEFAULT);
+
+    printf("MEMLOG,%lu,%s,%lu,%lu,%lu,%lu,%lu\n", 
+        (unsigned long)esp_log_timestamp(),
+        event,
+        (unsigned long)free_heap, 
+        (unsigned long)min_free_heap, 
+        (unsigned long)info.total_allocated_bytes,
+        (unsigned long)info.total_free_bytes,
+        (unsigned long)info.largest_free_block);
+
+    ESP_LOGI(TAG, "--- MEMORY STATS for event: %s ---", event);
+    ESP_LOGI(TAG, "Free heap: %lu bytes", (unsigned long)free_heap);
+    ESP_LOGI(TAG, "Minimum free heap ever: %lu bytes", (unsigned long)min_free_heap);
+    ESP_LOGI(TAG, "Total allocated: %lu bytes", (unsigned long)info.total_allocated_bytes);
+    ESP_LOGI(TAG, "Total free: %lu bytes", (unsigned long)info.total_free_bytes);
+    ESP_LOGI(TAG, "Largest free block: %lu bytes", (unsigned long)info.largest_free_block);
+}
+
 /* The WiFi event handler */
 static void event_handler(void* arg, esp_event_base_t event_base,
                             int32_t event_id, void* event_data)
@@ -83,6 +108,8 @@ static void event_handler(void* arg, esp_event_base_t event_base,
 /* Function to initialize WiFi */
 void wifi_init_sta(void)
 {
+    print_memory_stats("Before WiFi init");
+
     wifi_event_group = xEventGroupCreate();
 
     ESP_ERROR_CHECK(esp_netif_init());
@@ -138,6 +165,8 @@ void wifi_init_sta(void)
     } else {
         ESP_LOGE(TAG, "UNEXPECTED EVENT");
     }
+
+    print_memory_stats("After WiFi init");
 }
 
 /* The HTTP Event Handler */
@@ -174,6 +203,8 @@ esp_err_t http_event_handler(esp_http_client_event_t *evt)
 
 /* Function to send parking status update to the server */
 bool send_parking_update(const char* spot_id, bool is_taken) {
+    print_memory_stats("Before HTTP request");
+
     char url[256];
     bool success = false;
 
@@ -218,6 +249,7 @@ bool send_parking_update(const char* spot_id, bool is_taken) {
     cJSON_free(post_data);
     cJSON_Delete(root);
 
+    print_memory_stats("After HTTP request");
     return success;
 }
 

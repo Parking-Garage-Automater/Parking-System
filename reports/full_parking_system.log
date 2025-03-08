@@ -1,0 +1,823 @@
+Executing action: monitor
+Serial port /dev/cu.usbmodem11301
+Connecting...
+Detecting chip type... ESP32-C6
+Running idf_monitor in directory /Users/prkaaviya/Documents/PlatformIO/Projects/Parking-System
+Executing "/Users/prkaaviya/.espressif/python_env/idf5.2_py3.12_env/bin/python /Users/prkaaviya/esp/esp-idf/tools/idf_monitor.py -p /dev/cu.usbmodem11301 -b 115200 --toolchain-prefix riscv32-esp-elf- --target esp32c6 --revision 0 --decode-panic backtrace /Users/prkaaviya/Documents/PlatformIO/Projects/Parking-System/build/Parking-System.elf -m '/Users/prkaaviya/.espressif/python_env/idf5.2_py3.12_env/bin/python' '/Users/prkaaviya/esp/esp-idf/tools/idf.py'"...
+--- esp-idf-monitor 1.5.0 on /dev/cu.usbmodem11301 115200
+--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H
+ESP-ROM:esp32c6-20220919
+Build:Sep 19 2022
+rst:0x15 (USB_UART_HPSYS),boot:0xc (SPI_FAST_FLASH_BOOT)
+Saved PC:0x40022ee0
+--- 0x40022ee0: uart_rx_readbuff in ROM
+
+SPIWP:0xee
+mode:DIO, clock div:2
+load:0x40875720,len:0x18ec
+load:0x4086c410,len:0xe60
+load:0x4086e610,len:0x2f2c
+entry 0x4086c41a
+I (23) boot: ESP-IDF v5.2.3-955-g0830c08e89 2nd stage bootloader
+I (23) boot: compile time Mar  7 2025 22:09:29
+I (24) boot: chip revision: v0.0
+I (27) boot: efuse block revision: v0.1
+I (32) boot.esp32c6: SPI Speed      : 80MHz
+I (36) boot.esp32c6: SPI Mode       : DIO
+I (41) boot.esp32c6: SPI Flash Size : 2MB
+I (46) boot: Enabling RNG early entropy source...
+I (51) boot: Partition Table:
+I (55) boot: ## Label            Usage          Type ST Offset   Length
+I (62) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (70) boot:  1 phy_init         RF data          01 01 0000f000 00001000
+I (77) boot:  2 factory          factory app      00 00 00010000 00100000
+I (85) boot: End of partition table
+I (89) esp_image: segment 0: paddr=00010020 vaddr=420b8020 size=213cch (136140) map
+I (123) esp_image: segment 1: paddr=000313f4 vaddr=40800000 size=06c24h ( 27684) load
+I (130) esp_image: segment 2: paddr=00038020 vaddr=42000020 size=b4744h (739140) map
+I (272) esp_image: segment 3: paddr=000ec76c vaddr=40806c24 size=10528h ( 66856) load
+I (287) esp_image: segment 4: paddr=000fcc9c vaddr=40817150 size=039d8h ( 14808) load
+I (296) boot: Loaded app from partition at offset 0x10000
+I (297) boot: Disabling RNG early entropy source...
+I (308) cpu_start: Unicore app
+W (317) clk: esp_perip_clk_init() has not been implemented yet
+I (324) cpu_start: Pro cpu start user code
+I (324) cpu_start: cpu freq: 160000000 Hz
+I (324) cpu_start: Application information:
+I (327) cpu_start: Project name:     Parking-System
+I (332) cpu_start: App version:      aa4176c-dirty
+I (338) cpu_start: Compile time:     Mar  7 2025 22:16:28
+I (344) cpu_start: ELF file SHA256:  7b18d3f09...
+I (349) cpu_start: ESP-IDF:          v5.2.3-955-g0830c08e89
+I (356) cpu_start: Min chip rev:     v0.0
+I (360) cpu_start: Max chip rev:     v0.99 
+I (365) cpu_start: Chip rev:         v0.0
+I (370) heap_init: Initializing. RAM available for dynamic allocation:
+I (377) heap_init: At 40820360 len 0005C2B0 (368 KiB): RAM
+I (383) heap_init: At 4087C610 len 00002F54 (11 KiB): RAM
+I (389) heap_init: At 50000000 len 00003FE8 (15 KiB): RTCRAM
+I (396) spi_flash: detected chip: generic
+I (400) spi_flash: flash io: dio
+W (404) spi_flash: Detected size(8192k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
+I (418) sleep: Configure to isolate all GPIO pins in sleep state
+I (424) sleep: Enable automatic switching of GPIO sleep configuration
+I (431) coexist: coex firmware version: 994b23e
+I (437) coexist: coexist rom version 5b8dcfa
+I (442) main_task: Started on CPU0
+I (442) main_task: Calling app_main()
+I (442) PARKING_SYSTEM: Initializing parking system...
+I (462) PARKING_SYSTEM: Connecting to WiFi...
+MEMLOG,462,Before WiFi init,385084,384776,15388,385084,352256
+I (462) PARKING_SYSTEM: --- MEMORY STATS for event: Before WiFi init ---
+I (472) PARKING_SYSTEM: Free heap: 385084 bytes
+I (472) PARKING_SYSTEM: Minimum free heap ever: 384776 bytes
+I (482) PARKING_SYSTEM: Total allocated: 15388 bytes
+I (482) PARKING_SYSTEM: Total free: 385084 bytes
+I (492) PARKING_SYSTEM: Largest free block: 352256 bytes
+I (502) pp: pp rom version: 5b8dcfa
+I (502) net80211: net80211 rom version: 5b8dcfa
+I (512) wifi:wifi driver task: 40829470, prio:23, stack:6656, core=0
+I (522) wifi:wifi firmware version: 01d22db
+I (522) wifi:wifi certification version: v7.0
+I (522) wifi:config NVS flash: enabled
+I (522) wifi:config nano formating: disabled
+I (532) wifi:mac_version:HAL_MAC_ESP32AX_761,ut_version:N
+I (532) wifi:Init data frame dynamic rx buffer num: 32
+I (542) wifi:Init static rx mgmt buffer num: 5
+I (542) wifi:Init management short buffer num: 32
+I (542) wifi:Init dynamic tx buffer num: 32
+I (552) wifi:Init static tx FG buffer num: 2
+I (552) wifi:Init static rx buffer size: 1700
+I (562) wifi:Init static rx buffer num: 10
+I (562) wifi:Init dynamic rx buffer num: 32
+I (562) wifi_init: rx ba win: 6
+I (572) wifi_init: tcpip mbox: 32
+I (572) wifi_init: udp mbox: 6
+I (582) wifi_init: tcp mbox: 6
+I (582) wifi_init: tcp tx win: 5760
+I (582) wifi_init: tcp rx win: 5760
+I (592) wifi_init: tcp mss: 1440
+I (592) wifi_init: WiFi IRAM OP enabled
+I (602) wifi_init: WiFi RX IRAM OP enabled
+I (602) phy_init: phy_version 320,348a293,Sep  3 2024,16:33:12
+W (652) wifi:ACK_TAB0   :0x   90a0b, QAM16:0x9 (24Mbps), QPSK:0xa (12Mbps), BPSK:0xb (6Mbps)
+W (662) wifi:CTS_TAB0   :0x   90a0b, QAM16:0x9 (24Mbps), QPSK:0xa (12Mbps), BPSK:0xb (6Mbps)
+W (662) wifi:(agc)0x600a7128:0xd20dba04, min.avgNF:0xce->0xd2(dB), RCalCount:0xdb, min.RRssi:0xa04(-95.75)
+W (672) wifi:(TB)WDEV_PWR_TB_MCS0:19
+W (672) wifi:(TB)WDEV_PWR_TB_MCS1:19
+W (682) wifi:(TB)WDEV_PWR_TB_MCS2:19
+W (682) wifi:(TB)WDEV_PWR_TB_MCS3:19
+W (682) wifi:(TB)WDEV_PWR_TB_MCS4:19
+W (692) wifi:(TB)WDEV_PWR_TB_MCS5:19
+W (692) wifi:(TB)WDEV_PWR_TB_MCS6:18
+W (692) wifi:(TB)WDEV_PWR_TB_MCS7:18
+W (702) wifi:(TB)WDEV_PWR_TB_MCS8:17
+W (702) wifi:(TB)WDEV_PWR_TB_MCS9:15
+W (702) wifi:(TB)WDEV_PWR_TB_MCS10:15
+W (712) wifi:(TB)WDEV_PWR_TB_MCS11:15
+I (712) wifi:11ax coex: WDEVAX_PTI0(0x55777555), WDEVAX_PTI1(0x00003377).
+
+I (722) wifi:mode : sta (40:4c:ca:4e:15:0c)
+I (722) wifi:enable tsf
+I (722) PARKING_SYSTEM: wifi_init_sta finished.
+I (732) wifi:new:<6,0>, old:<1,0>, ap:<255,255>, sta:<6,0>, prof:1
+I (732) wifi:(connect)dot11_authmode:0x3, pairwise_cipher:0x3, group_cipher:0x3
+I (742) wifi:state: init -> auth (b0)
+I (752) wifi:state: auth -> assoc (0)
+I (762) wifi:Extended Capabilities length:8, subtype:0x10, 86:27:e3:fd:43:04, Operating mode notification Support
+I (762) wifi:state: assoc -> run (10)
+I (762) wifi:(trc)phytype:CBW20-SGI, snr:68, maxRate:144, highestRateIdx:0
+I (772) wifi:(trc)rate(S-MCS7, schedIdx:0), ampdu(rate:S-MCS7, schedIdx(0, stop:8)), snr:68, ampduState:wait operational
+I (782) wifi:ifidx:0, rssi:-28, nf:-96, phytype(0x3, CBW20-SGI), phymode(0x3, 11bgn), max_rate:1440, he:0
+I (792) wifi:max ampdu length exponent:3(65535 bytes), mmss:6(8 us)
+I (10792) wifi:state: run -> init (cc00)
+I (10802) wifi:ifidx:0, rssi:-28, nf:-95, phytype(0x3, CBW20-SGI), phymode(0x3, 11bgn), max_rate:1440, he:0
+I (10802) wifi:max ampdu length exponent:3(65535 bytes), mmss:6(8 us)
+I (10802) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1
+I (10812) PARKING_SYSTEM: Retry to connect to the AP
+I (10812) PARKING_SYSTEM: Connect to the AP failed
+I (13212) PARKING_SYSTEM: Retry to connect to the AP
+I (13212) PARKING_SYSTEM: Connect to the AP failed
+I (13242) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1
+I (13242) wifi:(connect)dot11_authmode:0x3, pairwise_cipher:0x3, group_cipher:0x3
+I (13242) wifi:state: init -> auth (b0)
+I (13262) wifi:state: auth -> assoc (0)
+I (13292) wifi:Extended Capabilities length:8, subtype:0x10, 86:27:e3:fd:43:04, Operating mode notification Support
+I (13292) wifi:state: assoc -> run (10)
+I (13292) wifi:(trc)phytype:CBW20-SGI, snr:65, maxRate:144, highestRateIdx:0
+I (13302) wifi:(trc)rate(S-MCS7, schedIdx:0), ampdu(rate:S-MCS7, schedIdx(0, stop:8)), snr:65, ampduState:wait operational
+I (13312) wifi:ifidx:0, rssi:-30, nf:-95, phytype(0x3, CBW20-SGI), phymode(0x3, 11bgn), max_rate:1440, he:0
+I (13322) wifi:max ampdu length exponent:3(65535 bytes), mmss:6(8 us)
+I (13362) wifi:connected with PRKiPhone, aid = 1, channel 6, BW20, bssid = 86:27:e3:fd:43:04
+I (13362) wifi:security: WPA2-PSK, phy:11bgn, rssi:-30, cipher(pairwise:0x3, group:0x3), pmf:0, 
+I (13372) wifi:pm start, type: 1, twt_start:0
+
+I (13372) wifi:pm start, type:1, aid:0x1, trans-BSSID:86:27:e3:fd:43:04, BSSID[5]:0x4, mbssid(max-indicator:0, index:0), he:0
+I (13382) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+I (13392) wifi:set rx beacon pti, rx_bcn_pti: 10, bcn_timeout: 25000, mt_pti: 10, mt_time: 10000
+I (13402) wifi:[ADDBA]TX addba request, tid:0, dialogtoken:1, bufsize:64, A-MSDU:0(not supported), policy:1(IMR), ssn:0(0x0)
+I (13412) wifi:[ADDBA]TX addba request, tid:7, dialogtoken:2, bufsize:64, A-MSDU:0(not supported), policy:1(IMR), ssn:0(0x20)
+I (13422) wifi:[ADDBA]TX addba request, tid:5, dialogtoken:3, bufsize:64, A-MSDU:0(not supported), policy:1(IMR), ssn:0(0x0)
+I (13432) wifi:[ADDBA]RX addba response, status:0, tid:0/tb:1(0xa1), bufsize:64, batimeout:0, txa_wnd:64
+I (13442) wifi:[ADDBA]RX addba response, status:0, tid:7/tb:1(0xa1), bufsize:64, batimeout:0, txa_wnd:64
+I (13452) wifi:[ADDBA]RX addba response, status:0, tid:5/tb:1(0xa1), bufsize:64, batimeout:0, txa_wnd:64
+I (13552) wifi:AP's beacon interval = 102400 us, DTIM period = 1
+I (14932) esp_netif_handlers: sta ip: 172.20.10.3, mask: 255.255.255.240, gw: 172.20.10.1
+I (14932) PARKING_SYSTEM: Got IP:172.20.10.3
+I (14932) PARKING_SYSTEM: Connected to AP SSID:PRKiPhone
+MEMLOG,14942,After WiFi init,334292,331408,65572,334292,303104
+I (14942) PARKING_SYSTEM: --- MEMORY STATS for event: After WiFi init ---
+I (14952) PARKING_SYSTEM: Free heap: 334292 bytes
+I (14952) PARKING_SYSTEM: Minimum free heap ever: 331408 bytes
+I (14962) PARKING_SYSTEM: Total allocated: 65572 bytes
+I (14972) PARKING_SYSTEM: Total free: 334292 bytes
+I (14972) PARKING_SYSTEM: Largest free block: 303104 bytes
+I (14982) gpio: GPIO[5]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 
+I (14992) gpio: GPIO[18]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 
+I (15002) gpio: GPIO[8]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 
+I (15012) gpio: GPIO[9]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 
+I (15012) gpio: GPIO[19]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 
+I (15022) gpio: GPIO[21]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 
+I (15032) gpio: GPIO[4]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 
+I (15042) gpio: GPIO[6]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 
+I (15052) PARKING_SYSTEM: Parking system initialized with 2 slots
+I (16082) PARKING_SYSTEM: Sending initial status for all parking slots
+MEMLOG,16082,Before HTTP request,334328,331408,65540,334328,303104
+I (16082) PARKING_SYSTEM: --- MEMORY STATS for event: Before HTTP request ---
+I (16092) PARKING_SYSTEM: Free heap: 334328 bytes
+I (16092) PARKING_SYSTEM: Minimum free heap ever: 331408 bytes
+I (16102) PARKING_SYSTEM: Total allocated: 65540 bytes
+I (16102) PARKING_SYSTEM: Total free: 334328 bytes
+I (16112) PARKING_SYSTEM: Largest free block: 303104 bytes
+I (16112) PARKING_SYSTEM: Sending update to http://152.53.124.121:3000/parking: {"spot":"Slot1","taken":false}
+W (16502) wifi:<ba-add>idx:0, ifx:0, tid:0, TAHI:0x1000443, TALO:0xfde32786, (ssn:2, win:64, cur_ssn:2), CONF:0xc0000005
+I (16632) PARKING_SYSTEM: HTTP_EVENT_ON_CONNECTED
+I (16632) PARKING_SYSTEM: HTTP_EVENT_HEADER_SENT
+I (16942) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=content-type, value=application/json
+I (16942) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=content-length, value=4
+I (16942) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=date, value=Fri, 07 Mar 2025 23:20:00 GMT
+I (16952) PARKING_SYSTEM: HTTP_EVENT_ON_DATA, len=4
+I (16962) PARKING_SYSTEM: HTTP_EVENT_ON_FINISH
+I (16962) PARKING_SYSTEM: HTTP POST Status = 200
+I (16972) PARKING_SYSTEM: HTTP_EVENT_DISCONNECTED
+MEMLOG,16972,After HTTP request,333740,325588,66088,333740,303104
+I (16982) PARKING_SYSTEM: --- MEMORY STATS for event: After HTTP request ---
+I (16992) PARKING_SYSTEM: Free heap: 333740 bytes
+I (16992) PARKING_SYSTEM: Minimum free heap ever: 325588 bytes
+I (17002) PARKING_SYSTEM: Total allocated: 66088 bytes
+I (17002) PARKING_SYSTEM: Total free: 333740 bytes
+I (17012) PARKING_SYSTEM: Largest free block: 303104 bytes
+I (17022) PARKING_SYSTEM: Initial update successful for Slot1
+MEMLOG,17022,Before HTTP request,333740,325588,66088,333740,303104
+I (17032) PARKING_SYSTEM: --- MEMORY STATS for event: Before HTTP request ---
+I (17042) PARKING_SYSTEM: Free heap: 333740 bytes
+I (17042) PARKING_SYSTEM: Minimum free heap ever: 325588 bytes
+I (17052) PARKING_SYSTEM: Total allocated: 66088 bytes
+I (17052) PARKING_SYSTEM: Total free: 333740 bytes
+I (17062) PARKING_SYSTEM: Largest free block: 303104 bytes
+I (17072) PARKING_SYSTEM: Sending update to http://152.53.124.121:3000/parking: {"spot":"Slot2","taken":false}
+I (17242) PARKING_SYSTEM: HTTP_EVENT_ON_CONNECTED
+I (17252) PARKING_SYSTEM: HTTP_EVENT_HEADER_SENT
+I (17522) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=content-type, value=application/json
+I (17522) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=content-length, value=4
+I (17522) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=date, value=Fri, 07 Mar 2025 23:20:00 GMT
+I (17532) PARKING_SYSTEM: HTTP_EVENT_ON_DATA, len=4
+I (17542) PARKING_SYSTEM: HTTP_EVENT_ON_FINISH
+I (17542) PARKING_SYSTEM: HTTP POST Status = 200
+I (17552) PARKING_SYSTEM: HTTP_EVENT_DISCONNECTED
+MEMLOG,17552,After HTTP request,333284,325588,66536,333284,303104
+I (17562) PARKING_SYSTEM: --- MEMORY STATS for event: After HTTP request ---
+I (17572) PARKING_SYSTEM: Free heap: 333284 bytes
+I (17572) PARKING_SYSTEM: Minimum free heap ever: 325588 bytes
+I (17582) PARKING_SYSTEM: Total allocated: 66536 bytes
+I (17582) PARKING_SYSTEM: Total free: 333284 bytes
+I (17592) PARKING_SYSTEM: Largest free block: 303104 bytes
+I (17602) PARKING_SYSTEM: Initial update successful for Slot2
+I (17612) PARKING_SYSTEM: Parking status for Slot1: 
+I (17612) PARKING_SYSTEM: AVAILABLE
+I (17612) PARKING_SYSTEM: Distance: 10.79 cm
+I (17622) PARKING_SYSTEM: 
+
+
+I (18132) PARKING_SYSTEM: Parking status for Slot2: 
+I (18132) PARKING_SYSTEM: AVAILABLE
+I (18132) PARKING_SYSTEM: Distance: 11.20 cm
+I (18132) PARKING_SYSTEM: 
+
+
+I (18642) PARKING_SYSTEM: 
+
+===== PARKING SUMMARY =====
+I (18642) PARKING_SYSTEM: Total slots: 2
+I (18642) PARKING_SYSTEM: Occupied: 0
+I (18642) PARKING_SYSTEM: Available: 2
+I (18642) PARKING_SYSTEM: Sensors with errors: 0
+I (18652) PARKING_SYSTEM: ===========================
+
+
+I (21662) PARKING_SYSTEM: Slot1 status changed: AVAILABLE -> OCCUPIED
+MEMLOG,21662,Before HTTP request,333456,325588,66364,333456,303104
+I (21662) PARKING_SYSTEM: --- MEMORY STATS for event: Before HTTP request ---
+I (21672) PARKING_SYSTEM: Free heap: 333456 bytes
+I (21672) PARKING_SYSTEM: Minimum free heap ever: 325588 bytes
+I (21682) PARKING_SYSTEM: Total allocated: 66364 bytes
+I (21692) PARKING_SYSTEM: Total free: 333456 bytes
+I (21692) PARKING_SYSTEM: Largest free block: 303104 bytes
+I (21702) PARKING_SYSTEM: Sending update to http://152.53.124.121:3000/parking: {"spot":"Slot1","taken":true}
+I (21852) PARKING_SYSTEM: HTTP_EVENT_ON_CONNECTED
+I (21852) PARKING_SYSTEM: HTTP_EVENT_HEADER_SENT
+I (22162) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=content-type, value=application/json
+I (22162) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=content-length, value=4
+I (22172) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=date, value=Fri, 07 Mar 2025 23:20:05 GMT
+I (22172) PARKING_SYSTEM: HTTP_EVENT_ON_DATA, len=4
+I (22182) PARKING_SYSTEM: HTTP_EVENT_ON_FINISH
+I (22192) PARKING_SYSTEM: HTTP POST Status = 200
+I (22192) PARKING_SYSTEM: HTTP_EVENT_DISCONNECTED
+MEMLOG,22202,After HTTP request,333092,324936,66712,333092,303104
+I (22202) PARKING_SYSTEM: --- MEMORY STATS for event: After HTTP request ---
+I (22212) PARKING_SYSTEM: Free heap: 333092 bytes
+I (22212) PARKING_SYSTEM: Minimum free heap ever: 324936 bytes
+I (22222) PARKING_SYSTEM: Total allocated: 66712 bytes
+I (22232) PARKING_SYSTEM: Total free: 333092 bytes
+I (22232) PARKING_SYSTEM: Largest free block: 303104 bytes
+I (22242) PARKING_SYSTEM: Server update successful for Slot1
+I (22242) PARKING_SYSTEM: Parking status for Slot1: 
+I (22252) PARKING_SYSTEM: OCCUPIED
+I (22252) PARKING_SYSTEM: Distance: 6.33 cm
+I (22262) PARKING_SYSTEM: 
+
+
+I (22772) PARKING_SYSTEM: Parking status for Slot2: 
+I (22772) PARKING_SYSTEM: AVAILABLE
+I (22772) PARKING_SYSTEM: Distance: 10.32 cm
+I (22772) PARKING_SYSTEM: 
+
+
+I (23282) PARKING_SYSTEM: 
+
+===== PARKING SUMMARY =====
+I (23282) PARKING_SYSTEM: Total slots: 2
+I (23282) PARKING_SYSTEM: Occupied: 1
+I (23282) PARKING_SYSTEM: Available: 1
+I (23282) PARKING_SYSTEM: Sensors with errors: 0
+I (23292) PARKING_SYSTEM: ===========================
+
+
+I (26302) PARKING_SYSTEM: Parking status for Slot1: 
+I (26302) PARKING_SYSTEM: OCCUPIED
+I (26302) PARKING_SYSTEM: Distance: 4.54 cm
+I (26302) PARKING_SYSTEM: 
+
+
+I (26812) PARKING_SYSTEM: Slot2 status changed: AVAILABLE -> OCCUPIED
+MEMLOG,26812,Before HTTP request,333244,324936,66572,333244,303104
+I (26812) PARKING_SYSTEM: --- MEMORY STATS for event: Before HTTP request ---
+I (26822) PARKING_SYSTEM: Free heap: 333244 bytes
+I (26822) PARKING_SYSTEM: Minimum free heap ever: 324936 bytes
+I (26832) PARKING_SYSTEM: Total allocated: 66572 bytes
+I (26842) PARKING_SYSTEM: Total free: 333244 bytes
+I (26842) PARKING_SYSTEM: Largest free block: 303104 bytes
+I (26852) PARKING_SYSTEM: Sending update to http://152.53.124.121:3000/parking: {"spot":"Slot2","taken":true}
+I (26972) PARKING_SYSTEM: HTTP_EVENT_ON_CONNECTED
+I (26972) PARKING_SYSTEM: HTTP_EVENT_HEADER_SENT
+I (27182) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=content-type, value=application/json
+I (27182) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=content-length, value=4
+I (27182) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=date, value=Fri, 07 Mar 2025 23:20:10 GMT
+I (27192) PARKING_SYSTEM: HTTP_EVENT_ON_DATA, len=4
+I (27202) PARKING_SYSTEM: HTTP_EVENT_ON_FINISH
+I (27202) PARKING_SYSTEM: HTTP POST Status = 200
+I (27212) PARKING_SYSTEM: HTTP_EVENT_DISCONNECTED
+MEMLOG,27212,After HTTP request,332880,324724,66920,332880,303104
+I (27222) PARKING_SYSTEM: --- MEMORY STATS for event: After HTTP request ---
+I (27232) PARKING_SYSTEM: Free heap: 332880 bytes
+I (27232) PARKING_SYSTEM: Minimum free heap ever: 324724 bytes
+I (27242) PARKING_SYSTEM: Total allocated: 66920 bytes
+I (27242) PARKING_SYSTEM: Total free: 332880 bytes
+I (27252) PARKING_SYSTEM: Largest free block: 303104 bytes
+I (27262) PARKING_SYSTEM: Server update successful for Slot2
+I (27262) PARKING_SYSTEM: Parking status for Slot2: 
+I (27272) PARKING_SYSTEM: OCCUPIED
+I (27272) PARKING_SYSTEM: Distance: 5.95 cm
+I (27282) PARKING_SYSTEM: 
+
+
+I (27782) PARKING_SYSTEM: 
+
+===== PARKING SUMMARY =====
+I (27782) PARKING_SYSTEM: Total slots: 2
+I (27782) PARKING_SYSTEM: Occupied: 2
+I (27782) PARKING_SYSTEM: Available: 0
+I (27782) PARKING_SYSTEM: Sensors with errors: 0
+I (27792) PARKING_SYSTEM: ===========================
+
+
+I (30802) PARKING_SYSTEM: Parking status for Slot1: 
+I (30802) PARKING_SYSTEM: OCCUPIED
+I (30802) PARKING_SYSTEM: Distance: 9.62 cm
+I (30802) PARKING_SYSTEM: 
+
+
+I (31322) PARKING_SYSTEM: Parking status for Slot2: 
+I (31322) PARKING_SYSTEM: OCCUPIED
+I (31322) PARKING_SYSTEM: Distance: 5.95 cm
+I (31322) PARKING_SYSTEM: 
+
+
+I (31822) PARKING_SYSTEM: 
+
+===== PARKING SUMMARY =====
+I (31822) PARKING_SYSTEM: Total slots: 2
+I (31822) PARKING_SYSTEM: Occupied: 2
+I (31822) PARKING_SYSTEM: Available: 0
+I (31822) PARKING_SYSTEM: Sensors with errors: 0
+I (31832) PARKING_SYSTEM: ===========================
+
+
+I (34842) PARKING_SYSTEM: Parking status for Slot1: 
+I (34842) PARKING_SYSTEM: OCCUPIED
+I (34842) PARKING_SYSTEM: Distance: 3.67 cm
+I (34842) PARKING_SYSTEM: 
+
+
+I (35352) PARKING_SYSTEM: Slot2 status changed: OCCUPIED -> AVAILABLE
+MEMLOG,35352,Before HTTP request,333032,324724,66780,333032,303104
+I (35352) PARKING_SYSTEM: --- MEMORY STATS for event: Before HTTP request ---
+I (35362) PARKING_SYSTEM: Free heap: 333032 bytes
+I (35362) PARKING_SYSTEM: Minimum free heap ever: 324724 bytes
+I (35372) PARKING_SYSTEM: Total allocated: 66780 bytes
+I (35382) PARKING_SYSTEM: Total free: 333032 bytes
+I (35382) PARKING_SYSTEM: Largest free block: 303104 bytes
+I (35392) PARKING_SYSTEM: Sending update to http://152.53.124.121:3000/parking: {"spot":"Slot2","taken":false}
+I (35782) PARKING_SYSTEM: HTTP_EVENT_ON_CONNECTED
+I (35782) PARKING_SYSTEM: HTTP_EVENT_HEADER_SENT
+I (35982) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=content-type, value=application/json
+I (35982) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=content-length, value=4
+I (35992) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=date, value=Fri, 07 Mar 2025 23:20:19 GMT
+I (36002) PARKING_SYSTEM: HTTP_EVENT_ON_DATA, len=4
+I (36002) PARKING_SYSTEM: HTTP_EVENT_ON_FINISH
+I (36012) PARKING_SYSTEM: HTTP POST Status = 200
+I (36012) PARKING_SYSTEM: HTTP_EVENT_DISCONNECTED
+MEMLOG,36022,After HTTP request,332668,324512,67128,332668,303104
+I (36032) PARKING_SYSTEM: --- MEMORY STATS for event: After HTTP request ---
+I (36032) PARKING_SYSTEM: Free heap: 332668 bytes
+I (36042) PARKING_SYSTEM: Minimum free heap ever: 324512 bytes
+I (36052) PARKING_SYSTEM: Total allocated: 67128 bytes
+I (36052) PARKING_SYSTEM: Total free: 332668 bytes
+I (36062) PARKING_SYSTEM: Largest free block: 303104 bytes
+I (36062) PARKING_SYSTEM: Server update successful for Slot2
+I (36072) PARKING_SYSTEM: Parking status for Slot2: 
+I (36072) PARKING_SYSTEM: AVAILABLE
+I (36082) PARKING_SYSTEM: Distance: 12.13 cm
+I (36082) PARKING_SYSTEM: 
+
+
+I (36592) PARKING_SYSTEM: 
+
+===== PARKING SUMMARY =====
+I (36592) PARKING_SYSTEM: Total slots: 2
+I (36592) PARKING_SYSTEM: Occupied: 1
+I (36592) PARKING_SYSTEM: Available: 1
+I (36592) PARKING_SYSTEM: Sensors with errors: 0
+I (36602) PARKING_SYSTEM: ===========================
+
+
+I (39612) PARKING_SYSTEM: Slot1 status changed: OCCUPIED -> AVAILABLE
+MEMLOG,39612,Before HTTP request,332820,324512,66988,332820,303104
+I (39612) PARKING_SYSTEM: --- MEMORY STATS for event: Before HTTP request ---
+I (39622) PARKING_SYSTEM: Free heap: 332820 bytes
+I (39622) PARKING_SYSTEM: Minimum free heap ever: 324512 bytes
+I (39632) PARKING_SYSTEM: Total allocated: 66988 bytes
+I (39642) PARKING_SYSTEM: Total free: 332820 bytes
+I (39642) PARKING_SYSTEM: Largest free block: 303104 bytes
+I (39652) PARKING_SYSTEM: Sending update to http://152.53.124.121:3000/parking: {"spot":"Slot1","taken":false}
+I (39772) PARKING_SYSTEM: HTTP_EVENT_ON_CONNECTED
+I (39772) PARKING_SYSTEM: HTTP_EVENT_HEADER_SENT
+I (40082) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=content-type, value=application/json
+I (40082) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=content-length, value=4
+I (40092) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=date, value=Fri, 07 Mar 2025 23:20:23 GMT
+I (40102) PARKING_SYSTEM: HTTP_EVENT_ON_DATA, len=4
+I (40102) PARKING_SYSTEM: HTTP_EVENT_ON_FINISH
+I (40112) PARKING_SYSTEM: HTTP POST Status = 200
+I (40112) PARKING_SYSTEM: HTTP_EVENT_DISCONNECTED
+MEMLOG,40122,After HTTP request,332456,324300,67336,332456,303104
+I (40122) PARKING_SYSTEM: --- MEMORY STATS for event: After HTTP request ---
+I (40132) PARKING_SYSTEM: Free heap: 332456 bytes
+I (40142) PARKING_SYSTEM: Minimum free heap ever: 324300 bytes
+I (40142) PARKING_SYSTEM: Total allocated: 67336 bytes
+I (40152) PARKING_SYSTEM: Total free: 332456 bytes
+I (40152) PARKING_SYSTEM: Largest free block: 303104 bytes
+I (40162) PARKING_SYSTEM: Server update successful for Slot1
+I (40172) PARKING_SYSTEM: Parking status for Slot1: 
+I (40172) PARKING_SYSTEM: AVAILABLE
+I (40182) PARKING_SYSTEM: Distance: 11.71 cm
+I (40182) PARKING_SYSTEM: 
+
+
+I (40692) PARKING_SYSTEM: Parking status for Slot2: 
+I (40692) PARKING_SYSTEM: AVAILABLE
+I (40692) PARKING_SYSTEM: Distance: 11.20 cm
+I (40692) PARKING_SYSTEM: 
+
+
+I (41202) PARKING_SYSTEM: 
+
+===== PARKING SUMMARY =====
+I (41202) PARKING_SYSTEM: Total slots: 2
+I (41202) PARKING_SYSTEM: Occupied: 0
+I (41202) PARKING_SYSTEM: Available: 2
+I (41202) PARKING_SYSTEM: Sensors with errors: 0
+I (41212) PARKING_SYSTEM: ===========================
+
+
+I (44222) PARKING_SYSTEM: Slot1 status changed: AVAILABLE -> OCCUPIED
+MEMLOG,44222,Before HTTP request,332608,324300,67196,332608,303104
+I (44222) PARKING_SYSTEM: --- MEMORY STATS for event: Before HTTP request ---
+I (44232) PARKING_SYSTEM: Free heap: 332608 bytes
+I (44232) PARKING_SYSTEM: Minimum free heap ever: 324300 bytes
+I (44242) PARKING_SYSTEM: Total allocated: 67196 bytes
+I (44252) PARKING_SYSTEM: Total free: 332608 bytes
+I (44252) PARKING_SYSTEM: Largest free block: 303104 bytes
+I (44262) PARKING_SYSTEM: Sending update to http://152.53.124.121:3000/parking: {"spot":"Slot1","taken":true}
+I (44382) PARKING_SYSTEM: HTTP_EVENT_ON_CONNECTED
+I (44382) PARKING_SYSTEM: HTTP_EVENT_HEADER_SENT
+I (44612) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=content-type, value=application/json
+I (44612) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=content-length, value=4
+I (44622) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=date, value=Fri, 07 Mar 2025 23:20:27 GMT
+I (44632) PARKING_SYSTEM: HTTP_EVENT_ON_DATA, len=4
+I (44632) PARKING_SYSTEM: HTTP_EVENT_ON_FINISH
+I (44642) PARKING_SYSTEM: HTTP POST Status = 200
+I (44642) PARKING_SYSTEM: HTTP_EVENT_DISCONNECTED
+MEMLOG,44652,After HTTP request,332244,324088,67544,332244,303104
+I (44662) PARKING_SYSTEM: --- MEMORY STATS for event: After HTTP request ---
+I (44662) PARKING_SYSTEM: Free heap: 332244 bytes
+I (44672) PARKING_SYSTEM: Minimum free heap ever: 324088 bytes
+I (44672) PARKING_SYSTEM: Total allocated: 67544 bytes
+I (44682) PARKING_SYSTEM: Total free: 332244 bytes
+I (44692) PARKING_SYSTEM: Largest free block: 303104 bytes
+I (44692) PARKING_SYSTEM: Server update successful for Slot1
+I (44702) PARKING_SYSTEM: Parking status for Slot1: 
+I (44702) PARKING_SYSTEM: OCCUPIED
+I (44712) PARKING_SYSTEM: Distance: 6.33 cm
+I (44712) PARKING_SYSTEM: 
+
+
+I (45232) PARKING_SYSTEM: Parking status for Slot2: 
+I (45232) PARKING_SYSTEM: AVAILABLE
+I (45232) PARKING_SYSTEM: Distance: 11.23 cm
+I (45232) PARKING_SYSTEM: 
+
+
+I (45742) PARKING_SYSTEM: 
+
+===== PARKING SUMMARY =====
+I (45742) PARKING_SYSTEM: Total slots: 2
+I (45742) PARKING_SYSTEM: Occupied: 1
+I (45742) PARKING_SYSTEM: Available: 1
+I (45742) PARKING_SYSTEM: Sensors with errors: 0
+I (45752) PARKING_SYSTEM: ===========================
+
+
+I (48762) PARKING_SYSTEM: Parking status for Slot1: 
+I (48762) PARKING_SYSTEM: OCCUPIED
+I (48762) PARKING_SYSTEM: Distance: 7.53 cm
+I (48762) PARKING_SYSTEM: 
+
+
+I (49272) PARKING_SYSTEM: Slot2 status changed: AVAILABLE -> OCCUPIED
+MEMLOG,49272,Before HTTP request,332396,324088,67404,332396,303104
+I (49272) PARKING_SYSTEM: --- MEMORY STATS for event: Before HTTP request ---
+I (49282) PARKING_SYSTEM: Free heap: 332396 bytes
+I (49282) PARKING_SYSTEM: Minimum free heap ever: 324088 bytes
+I (49292) PARKING_SYSTEM: Total allocated: 67404 bytes
+I (49302) PARKING_SYSTEM: Total free: 332396 bytes
+I (49302) PARKING_SYSTEM: Largest free block: 303104 bytes
+I (49312) PARKING_SYSTEM: Sending update to http://152.53.124.121:3000/parking: {"spot":"Slot2","taken":true}
+I (49502) PARKING_SYSTEM: HTTP_EVENT_ON_CONNECTED
+I (49502) PARKING_SYSTEM: HTTP_EVENT_HEADER_SENT
+I (49712) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=content-type, value=application/json
+I (49712) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=content-length, value=4
+I (49712) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=date, value=Fri, 07 Mar 2025 23:20:32 GMT
+I (49722) PARKING_SYSTEM: HTTP_EVENT_ON_DATA, len=4
+I (49732) PARKING_SYSTEM: HTTP_EVENT_ON_FINISH
+I (49732) PARKING_SYSTEM: HTTP POST Status = 200
+I (49742) PARKING_SYSTEM: HTTP_EVENT_DISCONNECTED
+MEMLOG,49742,After HTTP request,331784,323876,67996,331784,303104
+I (49752) PARKING_SYSTEM: --- MEMORY STATS for event: After HTTP request ---
+I (49752) PARKING_SYSTEM: Free heap: 331784 bytes
+I (49762) PARKING_SYSTEM: Minimum free heap ever: 323876 bytes
+I (49772) PARKING_SYSTEM: Total allocated: 67996 bytes
+I (49772) PARKING_SYSTEM: Total free: 331784 bytes
+I (49782) PARKING_SYSTEM: Largest free block: 303104 bytes
+I (49782) PARKING_SYSTEM: Server update successful for Slot2
+I (49792) PARKING_SYSTEM: Parking status for Slot2: 
+I (49802) PARKING_SYSTEM: OCCUPIED
+I (49802) PARKING_SYSTEM: Distance: 5.04 cm
+I (49802) PARKING_SYSTEM: 
+
+
+I (50312) PARKING_SYSTEM: 
+
+===== PARKING SUMMARY =====
+I (50312) PARKING_SYSTEM: Total slots: 2
+I (50312) PARKING_SYSTEM: Occupied: 2
+I (50312) PARKING_SYSTEM: Available: 0
+I (50312) PARKING_SYSTEM: Sensors with errors: 0
+I (50322) PARKING_SYSTEM: ===========================
+
+
+I (53332) PARKING_SYSTEM: Slot1 status changed: OCCUPIED -> AVAILABLE
+MEMLOG,53332,Before HTTP request,332184,323876,67612,332184,303104
+I (53332) PARKING_SYSTEM: --- MEMORY STATS for event: Before HTTP request ---
+I (53342) PARKING_SYSTEM: Free heap: 332184 bytes
+I (53342) PARKING_SYSTEM: Minimum free heap ever: 323876 bytes
+I (53352) PARKING_SYSTEM: Total allocated: 67612 bytes
+I (53362) PARKING_SYSTEM: Total free: 332184 bytes
+I (53362) PARKING_SYSTEM: Largest free block: 303104 bytes
+I (53372) PARKING_SYSTEM: Sending update to http://152.53.124.121:3000/parking: {"spot":"Slot1","taken":false}
+I (53522) PARKING_SYSTEM: HTTP_EVENT_ON_CONNECTED
+I (53522) PARKING_SYSTEM: HTTP_EVENT_HEADER_SENT
+I (53802) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=content-type, value=application/json
+I (53802) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=content-length, value=4
+I (53812) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=date, value=Fri, 07 Mar 2025 23:20:36 GMT
+I (53822) PARKING_SYSTEM: HTTP_EVENT_ON_DATA, len=4
+I (53822) PARKING_SYSTEM: HTTP_EVENT_ON_FINISH
+I (53832) PARKING_SYSTEM: HTTP POST Status = 200
+I (53832) PARKING_SYSTEM: HTTP_EVENT_DISCONNECTED
+MEMLOG,53842,After HTTP request,331820,323664,67960,331820,303104
+I (53842) PARKING_SYSTEM: --- MEMORY STATS for event: After HTTP request ---
+I (53852) PARKING_SYSTEM: Free heap: 331820 bytes
+I (53862) PARKING_SYSTEM: Minimum free heap ever: 323664 bytes
+I (53862) PARKING_SYSTEM: Total allocated: 67960 bytes
+I (53872) PARKING_SYSTEM: Total free: 331820 bytes
+I (53872) PARKING_SYSTEM: Largest free block: 303104 bytes
+I (53882) PARKING_SYSTEM: Server update successful for Slot1
+I (53892) PARKING_SYSTEM: Parking status for Slot1: 
+I (53892) PARKING_SYSTEM: AVAILABLE
+I (53902) PARKING_SYSTEM: Distance: 10.79 cm
+I (53902) PARKING_SYSTEM: 
+
+
+I (54412) PARKING_SYSTEM: Parking status for Slot2: 
+I (54412) PARKING_SYSTEM: OCCUPIED
+I (54412) PARKING_SYSTEM: Distance: 4.75 cm
+I (54412) PARKING_SYSTEM: 
+
+
+I (54912) PARKING_SYSTEM: 
+
+===== PARKING SUMMARY =====
+I (54912) PARKING_SYSTEM: Total slots: 2
+I (54912) PARKING_SYSTEM: Occupied: 1
+I (54912) PARKING_SYSTEM: Available: 1
+I (54912) PARKING_SYSTEM: Sensors with errors: 0
+I (54922) PARKING_SYSTEM: ===========================
+
+
+I (57932) PARKING_SYSTEM: Parking status for Slot1: 
+I (57932) PARKING_SYSTEM: AVAILABLE
+I (57932) PARKING_SYSTEM: Distance: 10.79 cm
+I (57932) PARKING_SYSTEM: 
+
+
+I (58452) PARKING_SYSTEM: Parking status for Slot2: 
+I (58452) PARKING_SYSTEM: OCCUPIED
+I (58452) PARKING_SYSTEM: Distance: 4.75 cm
+I (58452) PARKING_SYSTEM: 
+
+
+I (58952) PARKING_SYSTEM: 
+
+===== PARKING SUMMARY =====
+I (58952) PARKING_SYSTEM: Total slots: 2
+I (58952) PARKING_SYSTEM: Occupied: 1
+I (58952) PARKING_SYSTEM: Available: 1
+I (58952) PARKING_SYSTEM: Sensors with errors: 0
+I (58962) PARKING_SYSTEM: ===========================
+
+
+I (61972) PARKING_SYSTEM: Parking status for Slot1: 
+I (61972) PARKING_SYSTEM: AVAILABLE
+I (61972) PARKING_SYSTEM: Distance: 10.80 cm
+I (61972) PARKING_SYSTEM: 
+
+
+I (62492) PARKING_SYSTEM: Parking status for Slot2: 
+I (62492) PARKING_SYSTEM: OCCUPIED
+I (62492) PARKING_SYSTEM: Distance: 5.04 cm
+I (62492) PARKING_SYSTEM: 
+
+
+I (62992) PARKING_SYSTEM: 
+
+===== PARKING SUMMARY =====
+I (62992) PARKING_SYSTEM: Total slots: 2
+I (62992) PARKING_SYSTEM: Occupied: 1
+I (62992) PARKING_SYSTEM: Available: 1
+I (62992) PARKING_SYSTEM: Sensors with errors: 0
+I (63002) PARKING_SYSTEM: ===========================
+
+
+I (66012) PARKING_SYSTEM: Parking status for Slot1: 
+I (66012) PARKING_SYSTEM: AVAILABLE
+I (66012) PARKING_SYSTEM: Distance: 10.79 cm
+I (66012) PARKING_SYSTEM: 
+
+
+I (66532) PARKING_SYSTEM: Parking status for Slot2: 
+I (66532) PARKING_SYSTEM: OCCUPIED
+I (66532) PARKING_SYSTEM: Distance: 5.04 cm
+I (66532) PARKING_SYSTEM: 
+
+
+I (67032) PARKING_SYSTEM: 
+
+===== PARKING SUMMARY =====
+I (67032) PARKING_SYSTEM: Total slots: 2
+I (67032) PARKING_SYSTEM: Occupied: 1
+I (67032) PARKING_SYSTEM: Available: 1
+I (67032) PARKING_SYSTEM: Sensors with errors: 0
+I (67042) PARKING_SYSTEM: ===========================
+
+
+I (70052) PARKING_SYSTEM: Slot1 status changed: AVAILABLE -> OCCUPIED
+MEMLOG,70052,Before HTTP request,331972,323664,67820,331972,303104
+I (70052) PARKING_SYSTEM: --- MEMORY STATS for event: Before HTTP request ---
+I (70062) PARKING_SYSTEM: Free heap: 331972 bytes
+I (70062) PARKING_SYSTEM: Minimum free heap ever: 323664 bytes
+I (70072) PARKING_SYSTEM: Total allocated: 67820 bytes
+I (70082) PARKING_SYSTEM: Total free: 331972 bytes
+I (70082) PARKING_SYSTEM: Largest free block: 303104 bytes
+I (70092) PARKING_SYSTEM: Sending update to http://152.53.124.121:3000/parking: {"spot":"Slot1","taken":true}
+I (70292) PARKING_SYSTEM: HTTP_EVENT_ON_CONNECTED
+I (70292) PARKING_SYSTEM: HTTP_EVENT_HEADER_SENT
+I (70602) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=content-type, value=application/json
+I (70602) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=content-length, value=4
+I (70602) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=date, value=Fri, 07 Mar 2025 23:20:53 GMT
+I (70612) PARKING_SYSTEM: HTTP_EVENT_ON_DATA, len=4
+I (70622) PARKING_SYSTEM: HTTP_EVENT_ON_FINISH
+I (70622) PARKING_SYSTEM: HTTP POST Status = 200
+I (70632) PARKING_SYSTEM: HTTP_EVENT_DISCONNECTED
+MEMLOG,70632,After HTTP request,331368,323452,68404,331368,303104
+I (70642) PARKING_SYSTEM: --- MEMORY STATS for event: After HTTP request ---
+I (70652) PARKING_SYSTEM: Free heap: 331368 bytes
+I (70652) PARKING_SYSTEM: Minimum free heap ever: 323452 bytes
+I (70662) PARKING_SYSTEM: Total allocated: 68404 bytes
+I (70662) PARKING_SYSTEM: Total free: 331368 bytes
+I (70672) PARKING_SYSTEM: Largest free block: 303104 bytes
+I (70682) PARKING_SYSTEM: Server update successful for Slot1
+I (70682) PARKING_SYSTEM: Parking status for Slot1: 
+I (70692) PARKING_SYSTEM: OCCUPIED
+I (70692) PARKING_SYSTEM: Distance: 7.82 cm
+I (70702) PARKING_SYSTEM: 
+
+
+I (71212) PARKING_SYSTEM: Slot2 status changed: OCCUPIED -> AVAILABLE
+MEMLOG,71212,Before HTTP request,331768,323452,68020,331768,303104
+I (71212) PARKING_SYSTEM: --- MEMORY STATS for event: Before HTTP request ---
+I (71222) PARKING_SYSTEM: Free heap: 331768 bytes
+I (71222) PARKING_SYSTEM: Minimum free heap ever: 323452 bytes
+I (71232) PARKING_SYSTEM: Total allocated: 68020 bytes
+I (71242) PARKING_SYSTEM: Total free: 331768 bytes
+I (71242) PARKING_SYSTEM: Largest free block: 303104 bytes
+I (71252) PARKING_SYSTEM: Sending update to http://152.53.124.121:3000/parking: {"spot":"Slot2","taken":false}
+I (71522) PARKING_SYSTEM: HTTP_EVENT_ON_CONNECTED
+I (71522) PARKING_SYSTEM: HTTP_EVENT_HEADER_SENT
+I (71822) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=content-type, value=application/json
+I (71822) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=content-length, value=4
+I (71832) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=date, value=Fri, 07 Mar 2025 23:20:54 GMT
+I (71842) PARKING_SYSTEM: HTTP_EVENT_ON_DATA, len=4
+I (71842) PARKING_SYSTEM: HTTP_EVENT_ON_FINISH
+I (71852) PARKING_SYSTEM: HTTP POST Status = 200
+I (71852) PARKING_SYSTEM: HTTP_EVENT_DISCONNECTED
+MEMLOG,71862,After HTTP request,331400,323216,68372,331400,303104
+I (71872) PARKING_SYSTEM: --- MEMORY STATS for event: After HTTP request ---
+I (71872) PARKING_SYSTEM: Free heap: 331400 bytes
+I (71882) PARKING_SYSTEM: Minimum free heap ever: 323216 bytes
+I (71882) PARKING_SYSTEM: Total allocated: 68372 bytes
+I (71892) PARKING_SYSTEM: Total free: 331400 bytes
+I (71902) PARKING_SYSTEM: Largest free block: 303104 bytes
+I (71902) PARKING_SYSTEM: Server update successful for Slot2
+I (71912) PARKING_SYSTEM: Parking status for Slot2: 
+I (71912) PARKING_SYSTEM: AVAILABLE
+I (71922) PARKING_SYSTEM: Distance: 10.32 cm
+I (71922) PARKING_SYSTEM: 
+
+
+I (72432) PARKING_SYSTEM: 
+
+===== PARKING SUMMARY =====
+I (72432) PARKING_SYSTEM: Total slots: 2
+I (72432) PARKING_SYSTEM: Occupied: 1
+I (72432) PARKING_SYSTEM: Available: 1
+I (72432) PARKING_SYSTEM: Sensors with errors: 0
+I (72442) PARKING_SYSTEM: ===========================
+
+
+I (75452) PARKING_SYSTEM: Parking status for Slot1: 
+I (75452) PARKING_SYSTEM: OCCUPIED
+I (75452) PARKING_SYSTEM: Distance: 9.00 cm
+I (75452) PARKING_SYSTEM: 
+
+
+I (75972) PARKING_SYSTEM: Parking status for Slot2: 
+I (75972) PARKING_SYSTEM: AVAILABLE
+I (75972) PARKING_SYSTEM: Distance: 10.36 cm
+I (75972) PARKING_SYSTEM: 
+
+
+I (76482) PARKING_SYSTEM: 
+
+===== PARKING SUMMARY =====
+I (76482) PARKING_SYSTEM: Total slots: 2
+I (76482) PARKING_SYSTEM: Occupied: 1
+I (76482) PARKING_SYSTEM: Available: 1
+I (76482) PARKING_SYSTEM: Sensors with errors: 0
+I (76492) PARKING_SYSTEM: ===========================
+
+
+I (79502) PARKING_SYSTEM: Slot1 status changed: OCCUPIED -> AVAILABLE
+MEMLOG,79502,Before HTTP request,331512,323216,68268,331512,303104
+I (79502) PARKING_SYSTEM: --- MEMORY STATS for event: Before HTTP request ---
+I (79512) PARKING_SYSTEM: Free heap: 331512 bytes
+I (79512) PARKING_SYSTEM: Minimum free heap ever: 323216 bytes
+I (79522) PARKING_SYSTEM: Total allocated: 68268 bytes
+I (79532) PARKING_SYSTEM: Total free: 331512 bytes
+I (79532) PARKING_SYSTEM: Largest free block: 303104 bytes
+I (79542) PARKING_SYSTEM: Sending update to http://152.53.124.121:3000/parking: {"spot":"Slot1","taken":false}
+I (79712) PARKING_SYSTEM: HTTP_EVENT_ON_CONNECTED
+I (79712) PARKING_SYSTEM: HTTP_EVENT_HEADER_SENT
+I (80022) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=content-type, value=application/json
+I (80022) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=content-length, value=4
+I (80022) PARKING_SYSTEM: HTTP_EVENT_ON_HEADER, key=date, value=Fri, 07 Mar 2025 23:21:03 GMT
+I (80032) PARKING_SYSTEM: HTTP_EVENT_ON_DATA, len=4
+I (80042) PARKING_SYSTEM: HTTP_EVENT_ON_FINISH
+I (80042) PARKING_SYSTEM: HTTP POST Status = 200
+I (80052) PARKING_SYSTEM: HTTP_EVENT_DISCONNECTED
+MEMLOG,80052,After HTTP request,331176,323020,68592,331176,303104
+I (80062) PARKING_SYSTEM: --- MEMORY STATS for event: After HTTP request ---
+I (80072) PARKING_SYSTEM: Free heap: 331176 bytes
+I (80072) PARKING_SYSTEM: Minimum free heap ever: 323020 bytes
+I (80082) PARKING_SYSTEM: Total allocated: 68592 bytes
+I (80082) PARKING_SYSTEM: Total free: 331176 bytes
+I (80092) PARKING_SYSTEM: Largest free block: 303104 bytes
+I (80092) PARKING_SYSTEM: Server update successful for Slot1
+I (80102) PARKING_SYSTEM: Parking status for Slot1: 
+I (80112) PARKING_SYSTEM: AVAILABLE
+I (80112) PARKING_SYSTEM: Distance: 10.82 cm
+I (80122) PARKING_SYSTEM: 
+
+
+I (80632) PARKING_SYSTEM: Parking status for Slot2: 
+I (80632) PARKING_SYSTEM: AVAILABLE
+I (80632) PARKING_SYSTEM: Distance: 10.34 cm
+I (80632) PARKING_SYSTEM: 
+
+
+I (81142) PARKING_SYSTEM: 
+
+===== PARKING SUMMARY =====
+I (81142) PARKING_SYSTEM: Total slots: 2
+I (81142) PARKING_SYSTEM: Occupied: 0
+I (81142) PARKING_SYSTEM: Available: 2
+I (81142) PARKING_SYSTEM: Sensors with errors: 0
+I (81152) PARKING_SYSTEM: ===========================
