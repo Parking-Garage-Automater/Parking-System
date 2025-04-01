@@ -16,6 +16,9 @@
 
 void app_main() {
     ESP_LOGI(TAG, "Initializing parking system...");
+    esp_log_level_set("esp-tls", ESP_LOG_DEBUG);
+    esp_log_level_set("TRANS_SSL", ESP_LOG_DEBUG);
+    esp_log_level_set("HTTP_CLIENT", ESP_LOG_DEBUG);
 
     /* Initialize NVS flash */
     esp_err_t ret = nvs_flash_init();

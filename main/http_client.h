@@ -1,6 +1,6 @@
 /**
  * @file http_client.h
- * @brief Functions for HTTP communication with server
+ * @brief Functions for HTTPS communication with server
  */
 #ifndef HTTP_CLIENT_H
 #define HTTP_CLIENT_H

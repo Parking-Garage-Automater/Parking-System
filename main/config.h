@@ -14,8 +14,8 @@
 #define UPDATE_INTERVAL_SEC 3000    /* Send parking updates every 3 seconds */
 
 /* ===== Server Configuration ===== */
-#define SERVER_URL "http://152.53.124.121"
-#define PARKING_ENDPOINT "/parking"
+#define SERVER_URL "https://138.199.217.16"
+#define PARKING_ENDPOINT "/pt/parking"
 
 /* ===== WiFi Configuration ===== */
 #define WIFI_SSID "PRKiPhone"
