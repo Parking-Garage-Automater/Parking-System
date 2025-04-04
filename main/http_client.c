@@ -64,7 +64,7 @@ bool send_parking_update(const char* spot_id, bool is_taken) {
     esp_http_client_config_t config = {
         .url = url,
         .event_handler = http_event_handler,
-        .timeout_ms = 10000,
+        .timeout_ms = 50000,
     };
 
     esp_http_client_handle_t client = esp_http_client_init(&config);
